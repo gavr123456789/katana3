@@ -27,6 +27,11 @@ kotlin {
     sourceSets {
         val jvmMain by getting {
             dependencies {
+//                implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+                // To use constraintlayout in compose
+//                implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+//                implementation("org.jetbrains.compose.material3:material3-desktop:1.2.1")
+//                implementation("androidx.compose.material3:material3-window-size-class:1.0.1")
                 implementation(compose.desktop.currentOs)
                 implementation("io.github.androidpoet:dropdown:1.0.1")
             }

@@ -3,21 +3,14 @@ import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.LocalScrollbarStyle
 import androidx.compose.foundation.ScrollbarStyle
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowPosition
+import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import java.nio.file.Path
-
-
-@Composable
-fun Greeting() {
-    Text(text = "Sas!!!", style = TextStyle(color = Color.Red))
-}
 
 @Composable
 @Preview
@@ -27,9 +20,9 @@ fun App() {
     if (maybeFiles.isNullOrEmpty()) {
         return
     }
-    var files: List<Path> by rememberSaveable() { mutableStateOf(maybeFiles) }
-
-    println(files)
+//    var files: List<Path> by rememberSaveable() { mutableStateOf(maybeFiles) }
+//
+//    println(files)
 
     MaterialTheme {
         CompositionLocalProvider(
@@ -44,7 +37,7 @@ fun App() {
         ) {
 //            LazyScrollable(files = files, onFilesChange = { files = it })
 //            LayoutTest2()
-            ScaffoldExample()
+            MainLayout()
         }
     }
 
@@ -52,7 +45,14 @@ fun App() {
 
 fun main() = application {
 
-    Window(onCloseRequest = ::exitApplication) {
+    Window(
+        onCloseRequest = ::exitApplication, state = WindowState(
+            height = 400.dp, width = 300.dp,
+            position = WindowPosition.Aligned(
+                Alignment.Center
+            )
+        )
+    ) {
         App()
     }
 }
